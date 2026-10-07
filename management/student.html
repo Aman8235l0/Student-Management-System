@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+      #name{
+        height: 20px;
+        width: 200px;
+        border-radius: 20px;
+       
+
+      }#age{
+        height: 20px;
+        width: 200px;
+        border-radius: 20px;
+        margin-left: 30px;
+      }.main-part{
+        display: flex;
+        padding-left: 100px;
+        gap: 50px;
+        background-color: ;
+           margin-left: 30px;
+      }#course{
+          height: 20px;
+        width: 200px;
+        border-radius: 20px;
+           margin-left: 30px;
+      }
+      .main-h1{
+       
+      }.main-pp{
+        height: 70px;
+        width: 100%;
+        background-color: rgb(185, 168, 219);
+        border-radius: 20px;
+        text-align: center;
+        font-size: 25px;
+           margin-left: 30px;
+           font-family: sa;
+      }.form-box{
+        height: 100px;
+        width: 100%;
+        background-color: wheat;
+        padding-left: 20px;
+        padding-top: 20px;
+        margin-top: 5px;
+        border-radius: 20px;
+           margin-left: 30px;
+      }#marks{
+          height: 20px;
+        width: 200px;
+        border-radius: 20px;
+           margin-left: 30px;
+      }#addBtn{
+          height: 20px;
+        width: 200px;
+        border-radius: 20px;
+        padding-top: 5px;
+        padding-bottom: 10px;
+           margin-left: 30px;
+      }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="main-pp">
+        <h1 class="main-h1">  🎓 Student Management System</h1>
+        </nav>
+
+        <!-- Add Student  -->
+         <div class="form-box">
+            <h2 class="h1-head">Add New Student</h2>
+            <input type="text" id="name" placeholder="student name">
+            <input type="text" id="age" placeholder="Age">
+            <select id="course">
+                <option value="">Select Courses</option>
+                <option value=" BCA">BCA</option>
+                <option value="BSC">BSC</option>
+                <option value="BTECH">BTECH</option>
+                <option value="MTECH">MTECH</option>
+
+            </select>
+            <input type="number" id="marks" placeholder="Marks">
+            <button id="addBtn"> Add Student</button>
+         </div>
+         <!--  Statistics -->
+           <div class="main-part">
+        <div class="state">
+            <h3> Total Students</h3>
+            <h2 id="totalStudents">0</h2>
+           </div>
+        <div class="card">
+            <h3>Average Marks</h3>
+            <h2 id="averagemarks">0</h2>
+        </div>
+        <div class="card">
+            <h3>Highest Marks</h3>
+            <h2 id="highestMarks">0</h2>
+        </div>
+        </div>
+        <!--  Search+Filter -->
+        <div class="search-box">
+            <input
+            type="text"
+            id="searchInput"
+            placeholder="Search student name....">
+            <select id="courseFilter">
+                <option value="all">All course</option>
+                <option value="BCA">BCA</option>
+                <option value="BSC">BSC</option>
+                <option value="BTECH">BTECH</option>
+                </select>
+              <button id="searchBtn">Search</button>
+              <button id="filterBtn">Filter</button>
+
+           <!-- Student List -->
+            <div class="student-box">
+                <h2>Student List</h2>
+                <table>
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Age</th>
+                        <th>Course</th>
+                        <th>Marks</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody id="studentlist"></tbody>
+                </table>
+            </div>
+
+
+        </div>
+
+
+    <!-- <!-- </div> -->
+    <script src="./index.js" >
+//         let students =[
+// {
+//         id:1,
+//         name:"Aranab kumar",
+//         age :20,
+//         course:"BCA",
+//         marks:86
+
+//         },
+//         {
+//         id:2,
+//         name:"Priya Verma",
+//         age :19,
+//         course:"BSC",
+//         marks:76
+
+
+//         },
+//         {
+//         id:3,
+//         name:"Rohit kumar",
+//         age :19,
+//         course:"BCA",
+//         marks:89
+
+
+//         },
+//         {
+//         id:4,
+//         name:"Sneha Patel",
+//         age :20,
+//         course:"BTECH",
+//         marks:91
+
+
+//         },
+//         {
+//          id:5,
+//         name:"Aditya kumar",
+//         age :23,
+//         course:"BCA",
+//         marks:46
+ 
+//         }
+//    ];
+// //  DOM
+//                 let nameInput =document.querySelector("#name");
+//                 let ageInput =document.querySelector("#age");
+//                 let courseInput =document.querySelector("#course");
+//                 let marksInput =document.querySelector("#marks");
+//                 let addBtnInput =document.querySelector("#addBtn");
+//                 let totalInputs =document.querySelector("#totalStudents");
+//                 let averageInput =document.querySelector("#averagemarks");
+//                 let highestInput= document.querySelector("#highestMarks");
+//                 let searchInputt =document.querySelector("#searchInput");
+//                 let courseFilters =document.querySelector("#courseFilter");
+//                 let searchBtns =document.querySelector("#searchBtn");
+//                 let filterBtns =document.querySelector("#filterBtn");
+//                 let studentlist =document.querySelector("#studentlist")
+
+
+//     //   DISPLAY STUDENTS
+//    // -------------------- POOK----------------------//
+
+//     function displayStudents(data){
+
+//         studentlist.innerHTML="";
+//         data.map(function(student,index){
+//         const tr =document.createElement("tr");
+//         const status =student.marks>50?"pass":"fail";
+//         tr.innerHTML=`
+//         <td>${index+1}</td>
+//         <td>${student.name}</td>
+//         <td>${student.age}</td>
+//         <td>${student.course}</td>
+//         <td>${student.marks}</td>
+//         <td class=${student.marks>50?"pass":"fail"} >${status}</td>
+//         <td>
+//          <button class="del" onclick="deleteStudent(${student.id})" >del</button>
+//           <button class="edit" onclick="editStudent(${student.id})">edit</button>
+
+//          </td>
+//         `;
+//         studentlist.appendChild(tr);
+//      });
+//     }
+//     //   ------------------------------------------------
+//                       // STATISTICS 
+//     //---------------------------------------------------
+
+//     function calculateState(data){
+//         //   TOTOAL STUDENSTS
+//         totalInputs.textContent=data.length;
+
+//         // AVERAGE MARKS 
+//         if(data.length ===0){
+//             averageInput.textContent=0;
+            
+//         }else{
+//             const total =data.reduce(function(sum ,student){
+//                return  sum + student.marks;
+//             },0)
+//             const average =total/data.length;
+//              averageInput.textContent= average.toFixed(2)
+//         }
+
+    
+//     // Highest Marks 
+//     if(data.length===0){
+//         highestInput.textContent=0;
+//     }else{
+//         const highest= data.reduce(function(max,student){
+//              return student.marks>max?student.marks:max;
+//         },0)
+//         highestInput.textContent=highest;
+//     }
+// } 
+
+
+
+
+
+
+
+//            //    ADD STUDENT
+//     addBtnInput.addEventListener("click",function(){
+//         const name=nameInput.value.trim();
+//         const age =Number(ageInput.value);
+//         const course =courseInput.value;
+//         const marks =Number(marksInput.value);
+//         if(!name||!age||!course||!marks){
+//             alert("Please fill all fields");
+//             return
+//         }
+//         const newStuedent={
+//             id:Date.now(),
+//             name:name,
+//             age:age,
+//             course:course,
+//             marks:marks
+//         }
+//         students.push(newStuedent);
+//         displayStudents(students);
+//         calculateState(students);
+
+//         nameInput.value="";
+//         ageInput.value="";
+//         courseInput.value="";
+//         marksInput.value="";
+
+
+
+//     });
+//     //-------------------------Search-------------------------------------//
+//     searchBtns.addEventListener("click", function(){
+//         const searchValue = searchInputt.value.toLowerCase().trim();
+       
+//         const result = students.filter(function(student){
+//            return  student.name.toLowerCase().includes(searchValue);
+         
+//         });
+//            displayStudents(result);
+//             calculateState(result);
+//     })
+
+//     //---------------------------- filter by courses-------------------------//
+//     filterBtns.addEventListener("click" ,function(){
+//         const selectCourse = courseFilters.value;
+//         if(selectCourse==="all"){
+//             displayStudents(students);
+//             calculateState(students);
+//             return ;
+//         }
+//         const result = students.filter(function(student){
+//            return  student.course===selectCourse;
+//         });
+//         displayStudents(result);
+//         calculateState(result);
+//     })
+
+
+//  -->
+
+
+
+      
+     
+
+    </script>
+</body>
+</html>
